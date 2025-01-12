@@ -1,0 +1,146 @@
+using System;
+using System.Windows.Forms;
+
+namespace EducacaoInclusivaDigital
+{
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.Text = "Educação Inclusiva e Digital";
+            this.Size = new System.Drawing.Size(800, 600);
+
+            // Botões do Menu Principal
+            Button btnCadastroUsuarios = new Button();
+            btnCadastroUsuarios.Text = "Cadastro de Usuários";
+            btnCadastroUsuarios.Location = new System.Drawing.Point(50, 50);
+            btnCadastroUsuarios.Click += BtnCadastroUsuarios_Click;
+
+            Button btnCursos = new Button();
+            btnCursos.Text = "Cursos Disponíveis";
+            btnCursos.Location = new System.Drawing.Point(50, 100);
+            btnCursos.Click += BtnCursos_Click;
+
+            Button btnAcessibilidade = new Button();
+            btnAcessibilidade.Text = "Configurações de Acessibilidade";
+            btnAcessibilidade.Location = new System.Drawing.Point(50, 150);
+            btnAcessibilidade.Click += BtnAcessibilidade_Click;
+
+            // Adicionando os botões ao formulário principal
+            this.Controls.Add(btnCadastroUsuarios);
+            this.Controls.Add(btnCursos);
+            this.Controls.Add(btnAcessibilidade);
+        }
+
+        private void BtnCadastroUsuarios_Click(object sender, EventArgs e)
+        {
+            CadastroUsuariosForm cadastroForm = new CadastroUsuariosForm();
+            cadastroForm.ShowDialog();
+        }
+
+        private void BtnCursos_Click(object sender, EventArgs e)
+        {
+            CursosForm cursosForm = new CursosForm();
+            cursosForm.ShowDialog();
+        }
+
+        private void BtnAcessibilidade_Click(object sender, EventArgs e)
+        {
+            AcessibilidadeForm acessibilidadeForm = new AcessibilidadeForm();
+            acessibilidadeForm.ShowDialog();
+        }
+
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
+    }
+
+    public class CadastroUsuariosForm : Form
+    {
+        public CadastroUsuariosForm()
+        {
+            this.Text = "Cadastro de Usuários";
+            this.Size = new System.Drawing.Size(400, 300);
+
+            Label lblNome = new Label();
+            lblNome.Text = "Nome:";
+            lblNome.Location = new System.Drawing.Point(20, 20);
+
+            TextBox txtNome = new TextBox();
+            txtNome.Location = new System.Drawing.Point(100, 20);
+            txtNome.Width = 200;
+
+            Label lblTipo = new Label();
+            lblTipo.Text = "Tipo (Aluno/Professor):";
+            lblTipo.Location = new System.Drawing.Point(20, 60);
+
+            TextBox txtTipo = new TextBox();
+            txtTipo.Location = new System.Drawing.Point(180, 60);
+            txtTipo.Width = 120;
+
+            Button btnSalvar = new Button();
+            btnSalvar.Text = "Salvar";
+            btnSalvar.Location = new System.Drawing.Point(150, 100);
+            btnSalvar.Click += (s, e) => MessageBox.Show("Usuário cadastrado com sucesso!");
+
+            this.Controls.Add(lblNome);
+            this.Controls.Add(txtNome);
+            this.Controls.Add(lblTipo);
+            this.Controls.Add(txtTipo);
+            this.Controls.Add(btnSalvar);
+        }
+    }
+
+    public class CursosForm : Form
+    {
+        public CursosForm()
+        {
+            this.Text = "Cursos Disponíveis";
+            this.Size = new System.Drawing.Size(400, 300);
+
+            ListBox lstCursos = new ListBox();
+            lstCursos.Items.Add("Informática Básica");
+            lstCursos.Items.Add("Navegação Online");
+            lstCursos.Items.Add("Introdução ao Windows");
+            lstCursos.Location = new System.Drawing.Point(20, 20);
+            lstCursos.Size = new System.Drawing.Size(340, 200);
+
+            this.Controls.Add(lstCursos);
+        }
+    }
+
+    public class AcessibilidadeForm : Form
+    {
+        public AcessibilidadeForm()
+        {
+            this.Text = "Configurações de Acessibilidade";
+            this.Size = new System.Drawing.Size(400, 300);
+
+            CheckBox chkFonteGrande = new CheckBox();
+            chkFonteGrande.Text = "Ativar fonte grande";
+            chkFonteGrande.Location = new System.Drawing.Point(20, 20);
+
+            CheckBox chkModoEscuro = new CheckBox();
+            chkModoEscuro.Text = "Ativar modo escuro";
+            chkModoEscuro.Location = new System.Drawing.Point(20, 60);
+
+            Button btnAplicar = new Button();
+            btnAplicar.Text = "Aplicar";
+            btnAplicar.Location = new System.Drawing.Point(150, 100);
+            btnAplicar.Click += (s, e) => MessageBox.Show("Configurações aplicadas com sucesso!");
+
+            this.Controls.Add(chkFonteGrande);
+            this.Controls.Add(chkModoEscuro);
+            this.Controls.Add(btnAplicar);
+        }
+    }
+}
